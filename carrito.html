@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carrito</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: #dff5df;
+    text-align: center;
+}
+
+header{
+    background-color: green;
+    color: white;
+    padding: 15px;
+}
+
+.producto{
+    background-color: white;
+    border: 1px solid green;
+    width: 250px;
+    margin: 15px auto;
+    padding: 15px;
+}
+
+.precio{
+    font-weight: bold;
+    color: darkgreen;
+}
+
+.carrito{
+    background-color: white;
+    border: 1px solid green;
+    width: 300px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+button{
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>EcoTech Solutions</h1>
+    <p>Productos en el carrito : <span id="contador">0</span></p>
+</header>
+
+<div class="producto">
+    <h3>Lámpara Solar</h3>
+    <p>Iluminación ecológica.</p>
+    <p class="precio">$500</p>
+    <button onclick="agregarProducto('Lámpara Solar',500)">
+        Agregar +
+    </button>
+</div>
+
+<div class="producto">
+    <h3>Cargador Solar</h3>
+    <p>Carga dispositivos con energía solar.</p>
+    <p class="precio">$800</p>
+    <button onclick="agregarProducto('Cargador Solar',800)">
+        Agregar +
+    </button>
+</div>
+
+<div class="producto">
+    <h3>Panel Solar Escolar</h3>
+    <p>Ideal para proyectos educativos.</p>
+    <p class="precio">$1500</p>
+    <button onclick="agregarProducto('Panel Solar Escolar',1500)">
+        Agregar +
+    </button>
+</div>
+
+<div class="pagar">
+
+    <h2>Carrito de compras </h2>
+
+    <ul id="listaCarrito"></ul>
+
+    <p>
+        <strong>Total: $<span id="total">0</span></strong>
+    </p>
+
+    <button onclick="pagar()">
+        Proceder al Pago
+    </button>
+
+</div>
+
+<br>
+
+<a href="index.html">
+    <button>Volver al Inicio</button>
+</a>
+
+<script>
+
+let total = 0;
+let cantidad = 0;
+
+function agregarProducto(nombre, precio){
+
+    let lista = document.getElementById("listaCarrito");
+
+    let item = document.createElement("li");
+    item.textContent = nombre + " - $" + precio;
+
+    lista.appendChild(item);
+
+    total += precio;
+    cantidad++;
+
+    document.getElementById("total").textContent = total;
+    document.getElementById("contador").textContent = cantidad;
+}
+
+function pagar(){
+
+    if(total == 0){
+        alert("El carrito está vacío");
+        return;
+    }
+
+    alert("Total a pagar: $" + total);
+
+    document.getElementById("listaCarrito").innerHTML = "";
+    document.getElementById("total").textContent = "0";
+    document.getElementById("contador").textContent = "0";
+
+    total = 0;
+    cantidad = 0;
+}
+
+</script>
+
+</body>
+</html>
